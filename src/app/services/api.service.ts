@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Content } from '../models/content';
 import { Quiz, QuizData, QuizResponse } from '../models/quiz';
-
+import { Courses,UpdatedApiCourseData,ApiObjData, AddNewCourseObj } from '../models/courses';
 @Injectable({
   providedIn: 'root'
 })
@@ -46,23 +46,23 @@ export class ApiService {
   }
 
   // Post course
-  public postCourse(item: any): Observable<any> {
-    return this.http.post<any>(`api/courses`, item);
+  public postCourse(item: AddNewCourseObj): Observable<AddNewCourseObj> {
+    return this.http.post<AddNewCourseObj>(`api/courses`, item);
   }
 
   // Get courses
-  public getCourses(): Observable<any> {
-    return this.http.get<any>(`api/courses?populate=*`);
+  public getCourses(): Observable<Courses> {
+    return this.http.get<Courses>(`api/courses?populate=*`);
   }
 
   // update courses
-  public updateCourse(id: any, item: any): Observable<any> {
-    return this.http.put<any>(`api/courses/${id}`, item);
+  public updateCourse(id: number, item: AddNewCourseObj): Observable<UpdatedApiCourseData> {
+    return this.http.put<UpdatedApiCourseData>(`api/courses/${id}`, item);
   }
 
   // Delete course
-  public deleteCourse(id: any): Observable<any> {
-    return this.http.delete<any>(`api/courses/${id}`);
+  public deleteCourse(id: number): Observable<ApiObjData> {
+    return this.http.delete<ApiObjData>(`api/courses/${id}`);
   }
 
   /**
